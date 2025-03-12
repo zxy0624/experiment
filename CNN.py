@@ -2,6 +2,7 @@ import torch
 from torch import nn
 import numpy
 
+x = numpy.array([1,2,3,4,5])
 class MyLayer(nn.Module):
     def __init__(self, **kwargs):
         super(MyLayer, self).__init__(**kwargs)
