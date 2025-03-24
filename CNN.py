@@ -1,4 +1,3 @@
-
 import os
 import numpy as np
 import pandas as pd
@@ -8,15 +7,18 @@ import torch.optim as optim
 from torch.utils.data import Dataset, DataLoader
 import matplotlib.pyplot as plt
 
+
+
+
 # 配置GPU，这里有两种方式
-## 方案一：使用os.environ
+## 使用os.environ
 os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 
 ## 配置其他超参数，如batch_size, num_workers, learning rate, 以及总的epochs
 batch_size = 256
 num_workers = 0   # 对于Windows用户，这里应设置为0，否则会出现多线程错误
 lr = 1e-4
-epochs = 100
+epochs = 10
 
 # 首先设置数据变换
 from torchvision import transforms
