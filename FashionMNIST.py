@@ -12,10 +12,10 @@ import matplotlib.pyplot as plt
 os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 
 ## 配置其他超参数，如batch_size, num_workers, learning rate, 以及总的epochs
-batch_size = 256
+batch_size = 64
 num_workers = 0   # 对于Windows用户，这里应设置为0，否则会出现多线程错误
 lr = 1e-4
-epochs = 10
+epochs = 50
 
 # 首先设置数据变换
 from torchvision import transforms
@@ -57,11 +57,10 @@ test_data = FMDataset(test_df, data_transform)
 train_loader = DataLoader(train_data, batch_size=batch_size, shuffle=True, num_workers=num_workers, drop_last=True)
 test_loader = DataLoader(test_data, batch_size=batch_size, shuffle=False, num_workers=num_workers)
 
-image, label = next(iter(train_loader))
-print(image.shape, label.shape)
-plt.imshow(image[0][0], cmap="gray")
-plt.show()
-print(train_data[0][0].shape)
+# print(image.shape, label.shape)
+# plt.imshow(image[2][0], cmap="gray")
+# plt.show()
+# print(train_data[0][0].shape)
 
 class Net(nn.Module):
     def __init__(self):
@@ -92,6 +91,9 @@ class Net(nn.Module):
 
 model = Net()
 model = model.cuda()
+
+# print(model)
+
 # model = nn.DataParallel(model).cuda()   # 多卡训练时的写法，之后的课程中会进一步讲解
 criterion = nn.CrossEntropyLoss()
 # criterion = nn.CrossEntropyLoss(weight=[1,1,1,1,3,1,1,1,1,1])
@@ -132,5 +134,5 @@ for epoch in range(1, epochs+1):
     train(epoch)
     val(epoch)
 
-save_path = "./FahionModel.pkl"
-torch.save(model, save_path)
+torch.save(model,"FashionModel50.pth")
+# model = torch.load("FashionModel.pth")
