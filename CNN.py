@@ -7,9 +7,6 @@ import torch.optim as optim
 from torch.utils.data import Dataset, DataLoader
 import matplotlib.pyplot as plt
 
-
-
-
 # 配置GPU，这里有两种方式
 ## 使用os.environ
 os.environ['CUDA_VISIBLE_DEVICES'] = '0'
@@ -60,16 +57,11 @@ test_data = FMDataset(test_df, data_transform)
 train_loader = DataLoader(train_data, batch_size=batch_size, shuffle=True, num_workers=num_workers, drop_last=True)
 test_loader = DataLoader(test_data, batch_size=batch_size, shuffle=False, num_workers=num_workers)
 
-
-
-
-
 image, label = next(iter(train_loader))
 print(image.shape, label.shape)
 plt.imshow(image[0][0], cmap="gray")
 plt.show()
 print(train_data[0][0].shape)
-
 
 class Net(nn.Module):
     def __init__(self):
