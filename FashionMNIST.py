@@ -15,7 +15,7 @@ os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 batch_size =512 #512
 num_workers = 0   # 对于Windows用户，这里应设置为0，否则会出现多线程错误
 lr = 1e-4
-epochs = 500
+epochs = 300
 
 # 首先设置数据变换
 from torchvision import transforms
